@@ -2,14 +2,21 @@ package com.portfolio.mapping;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * PortfolioPlayerMaster entity. @author MyEclipse Persistence Tools
  */
 
+@Entity
 public class PortfolioPlayerMaster implements java.io.Serializable {
 
 	// Fields
 
+	@Id
+	@GeneratedValue
 	private Integer userId;
 	private String userName;
 	private String firstName;
@@ -24,6 +31,7 @@ public class PortfolioPlayerMaster implements java.io.Serializable {
 	private String acessId;
 	private String lastLoginIp;
 	private String status;
+	private Boolean isAdmin;
 
 	// Constructors
 
@@ -164,6 +172,14 @@ public class PortfolioPlayerMaster implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
 	}
 
 }

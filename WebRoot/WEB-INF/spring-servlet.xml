@@ -12,11 +12,24 @@
 	<context:component-scan base-package="com.portfolio" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>resource/messages</value>
+		</property>
+	</bean>
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/com/portfolio/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	</bean>
+
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
@@ -25,6 +38,11 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+	</bean>
+
 	<import resource="applicationContext.xml" />
 
 </beans>

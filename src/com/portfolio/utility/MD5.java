@@ -8,6 +8,8 @@ package com.portfolio.utility;
 * the distribution.
  ***/
 
+import javax.persistence.Entity;
+
 /**
  * This class implements the MD5 algorithm.
  * <p>
@@ -20,6 +22,7 @@ package com.portfolio.utility;
  * net, please contact me, and I will certainly take steps to clear up the
  * situation.
  */
+@Entity
 public final class MD5 {
 
   /**

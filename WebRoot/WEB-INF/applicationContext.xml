@@ -25,4 +25,5 @@
 		<!-- 1MB = 125000 Byte -->
 		<property name="maxUploadSize" value="125000" />
 	</bean>
+	
 </beans>  

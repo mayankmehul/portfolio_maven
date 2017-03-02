@@ -49,5 +49,8 @@
         <property name="status" type="java.lang.String">
             <column name="status" length="8" />
         </property>
+        <property name="isAdmin" type="java.lang.Boolean">
+        	<column name="is_Admin"/>
+        </property>
     </class>
 </hibernate-mapping>

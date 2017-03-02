@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Entity;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,10 +21,11 @@ import com.portfolio.mapping.PortfolioPropertyMaster;
 import com.portfolio.mapping.PortfolioSkillMaster;
 import com.portfolio.mapping.PortfolioWorkexpMaster;
 
+@Entity
 public class SignUpMgmtDao {
 
 	private SessionFactory sessionFactory;
-
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -31,11 +34,12 @@ public class SignUpMgmtDao {
 
 		Session session = sessionFactory.openSession();
 		PortfolioPlayerMaster portfolioPlayerMaster = new PortfolioPlayerMaster();
-		portfolioPlayerMaster.setUserName(bean.getUserName());
+		//portfolioPlayerMaster.setUserName(bean.getUserName());
 		portfolioPlayerMaster.setEmailId(bean.getEmailAddress());
 		portfolioPlayerMaster.setGender(bean.getSex());
 		portfolioPlayerMaster.setPassword(bean.getPassword());
 		portfolioPlayerMaster.setMobile(bean.getPhoneNo());
+		portfolioPlayerMaster.setAcessId((bean.getEmailAddress()+System.currentTimeMillis()));
 		portfolioPlayerMaster.setStatus("INACTIVE");
 		session.save(portfolioPlayerMaster);
 		session.flush();
@@ -135,5 +139,33 @@ public class SignUpMgmtDao {
 		List<PortfolioPlayerMaster> list = criteria.list();
 		session.close();
 		return list.get(0);
+	}
+	
+	public PortfolioPlayerMaster getPlayerMasterInfo(String acessId) {
+		Session session = sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(PortfolioPlayerMaster.class);
+		criteria.add(Restrictions.eq("acessId", acessId));
+		criteria.add(Restrictions.eq("status", "ACTIVE"));
+		System.out.println("criteria = " + criteria.list());
+		PortfolioPlayerMaster portfolioPlayerMaster = (PortfolioPlayerMaster) criteria.list().get(0);
+		session.close();
+		return portfolioPlayerMaster;
+	}
+	
+	public String getPlayerAcessId(SignUpBean signUpBean) {
+		Session session = sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(PortfolioPlayerMaster.class);
+		criteria.add(Restrictions.eq("emailId", signUpBean.getEmailAddress()));
+		criteria.add(Restrictions.eq("mobile", signUpBean.getPhoneNo()));
+		PortfolioPlayerMaster portfolioPlayerMaster = (PortfolioPlayerMaster) criteria.list().get(0);
+		return portfolioPlayerMaster.getAcessId();
+	}
+	
+
+	public Integer getAboutMeSubMasterCommonIdByUserId(Integer userId) {
+		Session session=sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(PortfolioAboutMeMaster.class);
+		criteria.add(Restrictions.eq("userId", userId));
+		return ((PortfolioAboutMeMaster) criteria.list().get(0)).getSubMasterCommonId();
 	}
 }

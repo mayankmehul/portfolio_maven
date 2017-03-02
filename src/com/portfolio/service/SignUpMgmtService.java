@@ -3,6 +3,9 @@ package com.portfolio.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 import com.portfolio.bean.SignUpBean;
 import com.portfolio.dao.SignUpMgmtDao;
 import com.portfolio.mapping.PortfolioAboutMeMaster;
@@ -15,8 +18,10 @@ import com.portfolio.mapping.PortfolioSkillMaster;
 import com.portfolio.mapping.PortfolioWorkexpMaster;
 
 
+@Entity
 public class SignUpMgmtService {
 	
+	@ManyToOne
 	private SignUpMgmtDao signUpMgmtDao;
 
 	public String saveSignUpInfo(SignUpBean bean){
@@ -67,4 +72,15 @@ public class SignUpMgmtService {
 		this.signUpMgmtDao = signUpMgmtDao;
 	}
 	
+	public PortfolioPlayerMaster getPlayerMasterInfo(String acessId) {
+		return signUpMgmtDao.getPlayerMasterInfo(acessId);
+	}
+	
+	public String getPlayerAcessId(SignUpBean signUpBean) {
+		return signUpMgmtDao.getPlayerAcessId(signUpBean);
+	}
+	
+	public Integer getAboutMeSubMasterCommonIdByUserId(Integer userId) {
+		return signUpMgmtDao.getAboutMeSubMasterCommonIdByUserId(userId);
+	}
 }

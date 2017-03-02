@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-body>
+	<rule>
+		<from>index.jsp</from>
+		<to>mypage/1</to>
+	</rule>
+	<!-- 
+	<rule>
+		<from>/</from>
+		<to>mypage/1</to>
+	</rule>
+	 -->
+</xml-body>

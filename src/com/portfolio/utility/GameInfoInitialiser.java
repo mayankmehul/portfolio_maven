@@ -2,6 +2,10 @@ package com.portfolio.utility;
 
 import java.io.IOException;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,8 +18,12 @@ import org.springframework.context.ApplicationContext;
 
 import com.portfolio.service.SignUpMgmtService;
 
+@Entity
 public class GameInfoInitialiser extends GenericServlet {
+	@Id
+	@GeneratedValue
 	private static final long serialVersionUID = -2459053297167640292L;
+	@ManyToOne
 	private SignUpMgmtService signUpMgmtService;
 	SessionFactory sessionFactory;
 	@Autowired

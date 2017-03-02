@@ -1,13 +1,20 @@
 package com.portfolio.mapping;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * PortfolioHomeMaster entity. @author MyEclipse Persistence Tools
  */
 
+@Entity
 public class PortfolioHomeMaster implements java.io.Serializable {
 
 	// Fields
 
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private Integer userId;
 	private String tagLine;

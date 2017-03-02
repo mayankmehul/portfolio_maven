@@ -56,8 +56,8 @@
 
 
 				<prop key="hibernate.connection.autocommit">true</prop>
-				<prop key="hibernate.show_sql">TRUE</prop>
-				<prop key="hibernate.format_sql">TRUE</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.c3p0.minPoolSize">5</prop>
 				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
 				<prop key="hibernate.c3p0.max_statement">70</prop>
@@ -71,6 +71,14 @@
 	</bean>
 
 	<bean id="signUpMgmtDao" class="com.portfolio.dao.SignUpMgmtDao">
+		<property name="sessionFactory" ref="portfolioSessionFactory" />
+	</bean>
+
+	<bean id="createProfileMgmtDao" class="com.portfolio.dao.CreateProfileMgmtDao">
+		<property name="sessionFactory" ref="portfolioSessionFactory" />
+	</bean>
+
+	<bean id="userDetailMgmtDao" class="com.portfolio.dao.UserDetailMgmtDao">
 		<property name="sessionFactory" ref="portfolioSessionFactory" />
 	</bean>
 

@@ -3,7 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-	<bean id="SignUpMgmtService" class="com.portfolio.service.SignUpMgmtService">
+	<bean id="signUpMgmtService" class="com.portfolio.service.SignUpMgmtService">
 		<property name="signUpMgmtDao" ref="signUpMgmtDao" />
 	</bean>
+
+	<bean id="createProfileMgmtService" class="com.portfolio.service.CreateProfileMgmtService">
+		<property name="createProfileMgmtDao" ref="createProfileMgmtDao" />
+	</bean>
+	
+	<bean id="userDetailMgmtService" class="com.portfolio.service.UserDetailMgmtService">
+		<property name="userDetailMgmtDao" ref="userDetailMgmtDao" />
+	</bean>
+
 </beans>

@@ -22,7 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
        <%
-       response.sendRedirect(basePath+"editPortfolio");
+       //response.sendRedirect(basePath+"editPortfolio");
+       //response.sendRedirect(basePath+"createPortfolio");
+       //response.sendRedirect(basePath+"test1");
         %>
   </body>
 </html>
