@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- Hibernate SessionFactory -->
+	<bean id="portfolioSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="portfoliodataSource" />
+		<property name="hibernateProperties">
+			<ref bean="portfolioHibernateProperties" />
+		</property>
+		<!-- Must references all OR mapping files. -->
+		<property name="mappingResources">
+			<list>
+				<value>com/portfolio/mapping/PortfolioPlayerMaster.hbm.xml</value>
+				<value>com/portfolio/mapping/PortfolioPropertyMaster.hbm.xml</value>
+				<value>com/portfolio/mapping/PortfolioHomeMaster.hbm.xml</value>
+				<value>com/portfolio/mapping/PortfolioAboutMeMaster.hbm.xml</value>
+				<value>com/portfolio/mapping/PortfolioAboutMeSubMaster.hbm.xml
+				</value>
+				<value>com/portfolio/mapping/PortfolioWorkexpMaster.hbm.xml</value>
+				<value>com/portfolio/mapping/PortfolioEducationMaster.hbm.xml
+				</value>
+				<value>com/portfolio/mapping/PortfolioSkillMaster.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<bean id="portfolioHibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.query.substitutions">
+					true 'T', false 'F'
+				</prop>
+
+				<prop key="hibernate.connection.provider_class">
+					org.hibernate.connection.C3P0ConnectionProvider
+				</prop>
+
+
+				<prop key="hibernate.c3p0.idle_test_period">100</prop>
+				<prop key="hibernate.c3p0.max_size">150</prop>
+				<prop key="hibernate.c3p0.max_statements">50</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+				<prop key="hibernate.c3p0.timeout">200</prop>
+
+
+				<prop key="hibernate.connection.autocommit">true</prop>
+				<prop key="hibernate.show_sql">TRUE</prop>
+				<prop key="hibernate.format_sql">TRUE</prop>
+				<prop key="hibernate.c3p0.minPoolSize">5</prop>
+				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
+				<prop key="hibernate.c3p0.max_statement">70</prop>
+				<prop key="hibernate.c3p0.testConnectionOnCheckout">
+					false
+				</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+			</props>
+
+		</property>
+	</bean>
+
+	<bean id="signUpMgmtDao" class="com.portfolio.dao.SignUpMgmtDao">
+		<property name="sessionFactory" ref="portfolioSessionFactory" />
+	</bean>
+
+</beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="portfolio"
+  id="myeclipse.1458978379575"
+  context-root="/portfolio"
+  j2ee-spec="5.0"
+  archive="portfolio.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
